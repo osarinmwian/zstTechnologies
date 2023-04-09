@@ -30,6 +30,9 @@
       "@assets/*": [
         "assets/*"
       ],
+      "@config/*": [
+        "config/*"
+      ],
       "@themes": [
         "assets/themes/index.ts"
       ],
@@ -49,7 +52,7 @@
         "src/store/*"
       ],
       "@utils": [
-        "src/utils/index.ts"
+        "assets/themes/index.tsx"
       ]
     }
   },
