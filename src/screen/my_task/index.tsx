@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const TaskScreen = () => {
+const MyTaskScreen = () => {
   return (
     <View>
       <Text>TaskScreen</Text>
@@ -9,6 +9,6 @@ const TaskScreen = () => {
   );
 };
 
-export default TaskScreen;
+export default MyTaskScreen;
 
 const styles = StyleSheet.create({});
