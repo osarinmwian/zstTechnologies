@@ -18,13 +18,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: WP(4),
     borderRadius: WP(2),
     borderColor: COLORS.gray,
-    borderWidth: WP(0.15),
-    shadowOffset: {
-      width: 0,
-      height: WP(0.2),
-    },
-    shadowOpacity: WP(0.084),
-    shadowRadius: WP(0.45),
+    borderWidth: WP(0.15)
   },
   inputStyle: {
     height: WP(60),
