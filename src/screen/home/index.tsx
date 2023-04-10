@@ -15,6 +15,8 @@ import { useNavigation } from "@react-navigation/native";
 import firebase from "../../../config/index";
 import Input from "@app/component/text_input";
 import { useCustomNavigation } from "@app/hooks";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RouteParmaList } from "@app/navigation/parma_list";
 
 type Todo = {
   id: string;
@@ -25,7 +27,7 @@ const HomeScreen = () => {
   const todoRef = firebase.firestore().collection("todos");
   const [addData, setAddData] = useState("");
   const { navToZstItemsScreen } = useCustomNavigation();
-
+  const navigation = useNavigation<StackNavigationProp<RouteParmaList>>();
   useEffect(() => {
     todoRef.orderBy("createdAt", "desc").onSnapshot((querySnapShot) => {
       const todos:
@@ -109,7 +111,16 @@ const HomeScreen = () => {
           numColumns={1}
           renderItem={({ item }) => (
             <View style={{ backgroundColor: "red" }}>
-              <Pressable>
+              <Pressable
+                onPress={() =>
+                  // navigation.navigate("ZstTaskItemsScreen", {
+                  //   items: item.heading,
+                  // })
+                  navigation.navigate("ZstTaskItemsScreen", {
+                    items: "some data here",
+                  })
+                }
+              >
                 <Text onPress={() => deleteTodo(item)}>DELETE</Text>
                 <View>
                   <Text>

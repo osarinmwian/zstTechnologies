@@ -3,13 +3,17 @@ import { NavigationProp, RouteProp } from "@react-navigation/native";
 export type RouteParmaList = {
   HomeScreen:
     | {
-        item?: string;
+        items?: string;
       }
     | undefined;
   CardScreen: undefined;
   MyTaskScreen: undefined;
   WelcomeScreen: undefined;
-  NewListScreen: undefined;
+  NewListScreen:
+    | {
+        items?: string;
+      }
+    | undefined;
   ZstTaskItemsScreen:
     | {
         items?: string;

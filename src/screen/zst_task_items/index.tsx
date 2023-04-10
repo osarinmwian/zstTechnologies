@@ -1,23 +1,36 @@
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import firebase from "../../../config/index";
-import { RouteProp } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import Input from "@app/component/text_input";
 
-type ZstTaskItemsProps = {
-  route: RouteProp<Record<string, object | undefined>, string>; // <-- define type of route prop
+type ZstTaskItemsScreenParams = {
+  items: string;
+  id: string;
 };
-const ZstTaskItemsScreen = ({ route }: ZstTaskItemsProps) => {
+type ZstTaskItemsScreenRouteProp = RouteProp<
+  Record<string, ZstTaskItemsScreenParams>,
+  "ZstTaskItemsScreen"
+>;
+const ZstTaskItemsScreen = () => {
+  const route = useRoute<ZstTaskItemsScreenRouteProp>();
+  const { items } = route.params ?? {};
   const todoRef = firebase.firestore().collection("todos");
   const [textHeading, onChangeHeadingText] = useState(
-    // route.params?.item?.name || ""
-    ""
+    route.params?.items || ""
   );
 
   const updateTodo = () => {
     if (textHeading && textHeading.length > 0) {
       todoRef
-        .doc()
+        .doc(route.params.items)
         .update({
           heading: textHeading,
         })
@@ -30,16 +43,32 @@ const ZstTaskItemsScreen = ({ route }: ZstTaskItemsProps) => {
     }
   };
   return (
-    <View>
-      <Input
-        placeholder="update Todos"
-        onChangeText={(heading) => onChangeHeadingText(heading)}
-        value={textHeading}
-      />
-      <TouchableOpacity onPress={() => updateTodo()}>
-        <Text>UPDATE</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView>
+      <View>
+        <View
+          style={{
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+          }}
+        >
+          <Input
+            placeholder="update Todos"
+            onChangeText={(heading) => onChangeHeadingText(heading)}
+            value={textHeading}
+          />
+        </View>
+        <TouchableOpacity onPress={() => updateTodo()}>
+          <Text>UPDATE</Text>
+        </TouchableOpacity>
+        <View style={{ backgroundColor: "blue" }}>
+          <Text>TODO ITEM</Text>
+          <Text>{items}</Text>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
