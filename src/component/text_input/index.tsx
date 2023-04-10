@@ -17,7 +17,7 @@ interface Props {
     | undefined;
   placeholder?: string;
   secureTextEntry?: boolean;
-  onChangeText?: ((e: string | ChangeEvent<any>) => void) | undefined;
+  onChangeText?: ((text: string) => void) | undefined;
   onBlur?: (e: any) => void;
   onFocus?: (e: any) => void;
   onChange?:

@@ -8,9 +8,9 @@ import {
   PanResponder,
   Animated,
 } from "react-native";
-import { Card } from "react-native-paper";
 
 const CardScreen = () => {
+  const [draggedCard, setDraggedCard] = useState(null);
   const [pan1, setPan1] = useState(new Animated.ValueXY());
   const [panResponder1, setPanResponder1] = useState(
     PanResponder.create({
@@ -65,7 +65,12 @@ const CardScreen = () => {
         {...panResponder1.panHandlers}
         style={[
           styles.card,
-          { elevation: 3, top: 250, backgroundColor: "rgba(0,0,0,0.6)" },
+          {
+            elevation: 3,
+            top: 250,
+            backgroundColor: "rgba(0,0,0,0.6)",
+            zIndex: pan1.y,
+          },
           pan1.getLayout(),
         ]}
       >
@@ -75,7 +80,12 @@ const CardScreen = () => {
         {...panResponder2.panHandlers}
         style={[
           styles.card,
-          { elevation: 2, top: 100, backgroundColor: "rgba(0,0,0,0.4)" },
+          {
+            elevation: 2,
+            top: 100,
+            backgroundColor: "rgba(0,0,0,0.4)",
+            zIndex: pan2.y,
+          },
           pan2.getLayout(),
         ]}
       >
@@ -85,7 +95,7 @@ const CardScreen = () => {
         {...panResponder3.panHandlers}
         style={[
           styles.card,
-          { elevation: 1, backgroundColor: "rgba(0,0,0,0.2)" },
+          { elevation: 1, backgroundColor: "rgba(0,0,0,0.2)", zIndex: pan3.y },
           pan3.getLayout(),
         ]}
       >

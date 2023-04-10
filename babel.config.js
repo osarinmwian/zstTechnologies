@@ -15,6 +15,8 @@ module.exports = function (api) {
             '@themes': ['./assets/themes/index.ts'],
             '@components': ['./src/components'],
             '@constants': ['./src/constants/index.ts'],
+            "@config/*": [
+              '.config'],
             '@hook': ['./src/hook/index.ts'],
             '@navigation': ['./src/navigation'],
             '@screens': ['./src/screens'],
