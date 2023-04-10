@@ -25,7 +25,13 @@ export const addTodo = createAsyncThunk(
       heading,
       createdAt: timestamp
     });
-    return { id: docRef.id, heading, createdAt: new Date() };
+    // return { id: docRef.id, heading, createdAt: new Date() };
+    return { 
+      id: docRef.id, 
+      heading, 
+      createdAt: new Date().toISOString(),
+    };
+
   }
 );
 
@@ -49,15 +55,20 @@ const tasksSlice = createSlice({
         state.items = [];
       })
       .addCase(fetchTodos.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload.map((todo) => ({
+          ...todo,
+          createdAt: new Date(todo.createdAt)
+        }));
       })
       .addCase(addTodo.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        state.items.push({
+          ...action.payload,
+          createdAt: new Date(action.payload.createdAt)
+        });
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
         state.items = state.items.filter((item) => item.id !== action.payload);
       });
-      
   },
 });
 
