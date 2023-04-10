@@ -65,7 +65,7 @@ const HomeScreen = () => {
             marginHorizontal: 10,
           }}
         >
-          <Text>{todos.length}</Text>
+          {/* <Text>{todos.length}</Text> */}
         </View>
         <HomeTopTab />
         {/* <CardScreen /> */}
