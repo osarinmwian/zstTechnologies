@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { AppDispatch, RootState } from "@app/redux/store";
+import { fetchTodos } from "@app/redux/store/taskSlice";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   SafeAreaView,
   Text,
@@ -7,10 +9,15 @@ import {
   Image,
   PanResponder,
   Animated,
+  FlatList,
+  PanResponderInstance,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 const CardScreen = () => {
-  const [draggedCard, setDraggedCard] = useState(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const todos = useSelector((state: RootState) => state.tasks.items);
+
   const [pan1, setPan1] = useState(new Animated.ValueXY());
   const [panResponder1, setPanResponder1] = useState(
     PanResponder.create({
@@ -59,60 +66,47 @@ const CardScreen = () => {
     })
   );
 
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, []);
+
   return (
     <View style={styles.cardContainer}>
-      <Animated.View
-        {...panResponder1.panHandlers}
-        style={[
-          styles.card,
-          {
-            elevation: 3,
-            top: 250,
-            backgroundColor: "rgba(0,0,0,0.6)",
-            zIndex: pan1.y,
-          },
-          pan1.getLayout(),
-        ]}
-      >
-        <Text style={styles.paragraph}>Card View 1</Text>
-      </Animated.View>
-      <Animated.View
-        {...panResponder2.panHandlers}
-        style={[
-          styles.card,
-          {
-            elevation: 2,
-            top: 100,
-            backgroundColor: "rgba(0,0,0,0.4)",
-            zIndex: pan2.y,
-          },
-          pan2.getLayout(),
-        ]}
-      >
-        <Text style={styles.paragraph}>Card View 2</Text>
-      </Animated.View>
-      <Animated.View
-        {...panResponder3.panHandlers}
-        style={[
-          styles.card,
-          { elevation: 1, backgroundColor: "rgba(0,0,0,0.2)", zIndex: pan3.y },
-          pan3.getLayout(),
-        ]}
-      >
-        <Text style={styles.paragraph}>Card View 3</Text>
-      </Animated.View>
+      {todos.map((todo, index) => (
+        <Animated.View
+          key={todo.id}
+          {...(index === 0
+            ? panResponder1.panHandlers
+            : index === 1
+            ? panResponder2.panHandlers
+            : panResponder3.panHandlers)}
+          style={[
+            styles.card,
+            {
+              elevation: index + 1,
+              top: 100 * index,
+              backgroundColor: `rgba(0, 0, 0, ${0.2 + index * 0.2})`,
+              zIndex: index === 0 ? pan1.y : index === 1 ? pan2.y : pan3.y,
+            },
+            (index === 0 ? pan1 : index === 1 ? pan2 : pan3).getLayout(),
+          ]}
+        >
+          <Text style={styles.paragraph}>Card View {index + 1}</Text>
+          <Text>{todo.heading}</Text>
+        </Animated.View>
+      ))}
     </View>
   );
 };
 
 export default CardScreen;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     padding: 20,
     backgroundColor: "#ecf0f1",
+    height: 100,
   },
   cardContainer: {
     alignItems: "center",

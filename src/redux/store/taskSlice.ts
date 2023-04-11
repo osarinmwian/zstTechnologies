@@ -2,17 +2,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import firebase from "../../../config/index";
 
 export const fetchTodos = createAsyncThunk("tasks/fetchTodos", async () => {
-  const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-  const todoRef = firebase.firestore().collection("todos");
   const snapshot = await firebase
     .firestore()
     .collection("todos")
     .orderBy("createdAt", "desc")
     .get();
-  const todos = snapshot.docs.map((doc) => ({
-    id: doc.id,
-    heading: doc.data().heading,
-    createdAt: doc.data().createdAt.toDate().toISOString(),
+    const todos = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      heading: doc.data().heading,
+      createdAt: doc.data().createdAt.toDate().toISOString(),
+      completed: doc.data().completed // <-- add this line
   }));
   return todos ;
 });
@@ -20,16 +19,13 @@ export const fetchTodos = createAsyncThunk("tasks/fetchTodos", async () => {
 export const addTodo = createAsyncThunk(
   "tasks/addTodo",
   async (heading: string) => {
-    const timestamp = firebase.firestore.FieldValue.serverTimestamp();
     const docRef = await firebase.firestore().collection("todos").add({
       heading,
-      createdAt: timestamp
     });
-    // return { id: docRef.id, heading, createdAt: new Date() };
+
     return { 
       id: docRef.id, 
-      heading, 
-      createdAt: new Date().toISOString(),
+      heading,  
     };
 
   }
@@ -46,7 +42,9 @@ export const deleteTodo = createAsyncThunk(
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
-    items: [] as { id: string; heading: string; createdAt: Date }[],
+items: [] as {
+  completed: unknown; id: string; heading: string; createdAt: Date | undefined
+}[],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -60,16 +58,19 @@ const tasksSlice = createSlice({
           createdAt: new Date(todo.createdAt)
         }));
       })
+      
       .addCase(addTodo.fulfilled, (state, action) => {
         state.items.push({
           ...action.payload,
-          createdAt: new Date(action.payload.createdAt)
+          completed: undefined,
+          createdAt: undefined
         });
       })
-      .addCase(deleteTodo.fulfilled, (state, action) => {
+       .addCase(deleteTodo.fulfilled, (state, action) => {
         state.items = state.items.filter((item) => item.id !== action.payload);
       });
   },
+  
 });
 
 export default tasksSlice.reducer;

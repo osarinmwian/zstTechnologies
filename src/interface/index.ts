@@ -13,3 +13,8 @@ export interface State {
     type: string;
     payload: Task;
   }
+
+  export interface Todo  {
+    id: string;
+    heading: string;
+  };
