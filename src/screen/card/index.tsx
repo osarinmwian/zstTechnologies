@@ -7,6 +7,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 type Props = {
   icon?: any;
+  size?: number;
 };
 const CardScreen = (props: Props) => {
   const [pan1, setPan1] = useState(new Animated.ValueXY());
@@ -98,13 +99,13 @@ const CardScreen = (props: Props) => {
             top: WP(6),
             backgroundColor: COLORS.white,
             zIndex: pan1.y,
-            width: WP(53),
+            width: WP(43),
             height: WP(50),
           },
           pan1.getLayout(),
         ]}
       >
-        <FontAwesome5 name={props.icon} size={WP(27)} color={COLORS.red} />
+        <FontAwesome5 name={props.icon} size={props.size} color={COLORS.red} />
       </Animated.View>
       <Animated.View
         {...panResponder2.panHandlers}
@@ -116,13 +117,17 @@ const CardScreen = (props: Props) => {
             backgroundColor: COLORS.red,
             zIndex: pan2.y,
             marginTop: WP(-50),
-            width: WP(52.6),
+            width: WP(42.6),
             height: WP(50),
           },
           pan2.getLayout(),
         ]}
       >
-        <FontAwesome5 name={props.icon} size={WP(27)} color={COLORS.primary} />
+        <FontAwesome5
+          name={props.icon}
+          size={props.size}
+          color={COLORS.primary}
+        />
       </Animated.View>
       <Animated.View
         {...panResponder3.panHandlers}
@@ -133,13 +138,17 @@ const CardScreen = (props: Props) => {
             backgroundColor: COLORS.primary,
             zIndex: pan3.y,
             marginTop: WP(-50),
-            width: WP(52.4),
+            width: WP(42.4),
             height: WP(50),
           },
           pan3.getLayout(),
         ]}
       >
-        <FontAwesome5 name={props.icon} size={WP(27)} color={COLORS.white} />
+        <FontAwesome5
+          name={props.icon}
+          size={props.size}
+          color={COLORS.white}
+        />
       </Animated.View>
       <Animated.View
         {...panResponder4.panHandlers}
@@ -150,13 +159,17 @@ const CardScreen = (props: Props) => {
             backgroundColor: COLORS.green,
             zIndex: pan4.y,
             marginTop: WP(-49),
-            width: WP(52.2),
+            width: WP(42.2),
             height: WP(50),
           },
           pan3.getLayout(),
         ]}
       >
-        <FontAwesome5 name={props.icon} size={WP(27)} color={COLORS.yellow} />
+        <FontAwesome5
+          name={props.icon}
+          size={props.size}
+          color={COLORS.yellow}
+        />
       </Animated.View>
       <Animated.View
         {...panResponder5.panHandlers}
@@ -167,13 +180,17 @@ const CardScreen = (props: Props) => {
             backgroundColor: COLORS.yellow,
             zIndex: pan5.y,
             marginTop: WP(-49),
-            width: WP(52.1),
+            width: WP(42.1),
             height: WP(50),
           },
           pan3.getLayout(),
         ]}
       >
-        <FontAwesome5 name={props.icon} size={WP(20)} color={COLORS.green} />
+        <FontAwesome5
+          name={props.icon}
+          size={props.size}
+          color={COLORS.green}
+        />
       </Animated.View>
     </View>
   );

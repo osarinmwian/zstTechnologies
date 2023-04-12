@@ -4,7 +4,6 @@ import { COLORS } from "@assets/themes";
 import MyTaskScreen from "@app/screen/my_task";
 import ZstTaskItems from "@app/screen/zst_task_items";
 import NewListScreen from "@app/screen/new_list";
-import ActionsModal from "@app/screen/bottom_sheet";
 import { styles } from "./styles";
 import { widthPercentageToDP as WP } from "react-native-responsive-screen";
 import { AntDesign } from "@expo/vector-icons";

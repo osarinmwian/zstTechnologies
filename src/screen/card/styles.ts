@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     cardContainer: {
       alignItems: "center",
       justifyContent: "center",
-      marginTop: "40%",
+      marginTop: "30%",
     },
     card: {
       width: WP(57),

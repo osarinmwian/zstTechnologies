@@ -1,23 +1,14 @@
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { AppDispatch, RootState } from "@app/redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { MaterialIcons } from "@expo/vector-icons";
-import { deleteTodo } from "@app/redux/store/taskSlice";
-import { COLORS } from "@assets/themes";
+import { RootState } from "@app/redux/store";
+import { useSelector } from "react-redux";
 import CardScreen from "../card";
 import { styles } from "./styles";
+import { widthPercentageToDP as WP } from "react-native-responsive-screen";
 
 const MyTaskScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
   const todos = useSelector((state: RootState) => state.tasks.items);
-
-  const handleDeleteAll = () => {
-    todos.forEach((todo) => {
-      dispatch(deleteTodo(todo.id));
-    });
-  };
   useEffect(() => {
     setIsLoading(true);
   }, []);
@@ -38,24 +29,12 @@ const MyTaskScreen = () => {
   } else if (todos.length === 0) {
     return (
       <View>
-        <CardScreen icon="check" />
+        <CardScreen icon="feather" size={WP(20)} />
         <Text style={styles.completeTodosText}>No Task Yet</Text>
         <Text style={styles.noTaskYetStyle}>
           Add Your to-dos and keep track of them
         </Text>
         <Text style={styles.noTaskYetStyle}>across google workspace</Text>
-      </View>
-    );
-  } else if (todos.length == 2) {
-    return (
-      <View>
-        <CardScreen />
-        <View style={styles.completeTodos}>
-          <Text style={styles.completeTodosText}>No Task Yet</Text>
-          <Pressable onPress={handleDeleteAll}>
-            <Text style={styles.completeTodosText}>Undo</Text>
-          </Pressable>
-        </View>
       </View>
     );
   } else {

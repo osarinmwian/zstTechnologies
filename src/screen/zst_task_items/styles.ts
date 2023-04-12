@@ -19,24 +19,37 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginHorizontal: WP(3),
-    marginTop: WP(25),
+    marginTop: WP(20),
     marginBottom: WP(1.875),
     borderColor: COLORS.lightGray,
+    backgroundColor: COLORS.white,
     borderWidth: WP(0.2),
     borderRadius: WP(2),
     paddingHorizontal: WP(3),
-    paddingVertical: WP(3),
+    padding: WP(3),
+ 
     
   },
   completeTodosText: {
     color: COLORS.white,
     alignSelf: "center",
-    marginTop: WP(10),
-    marginBottom: WP(2), 
+    marginTop: WP(6),
+    fontSize: SIZE.h9,
+  
+  },
+  undoText: {
+    color: COLORS.blue,
+    marginTop: WP(1),
+    fontWeight:"bold"
   },
   niceWorkStyle: {
     color: COLORS.gray,
     alignSelf: "center",
+    marginTop: WP(3),
   
-  }
+  },
+  taskCompleted: {
+    color: COLORS.gray,
+    alignSelf: "center",
+  },
 });

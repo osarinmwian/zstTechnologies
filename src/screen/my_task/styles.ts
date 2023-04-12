@@ -32,7 +32,8 @@ export const styles = StyleSheet.create({
         color: COLORS.white,
         alignSelf: "center",
         marginTop: WP(10),
-        marginBottom: WP(2),    
+        marginBottom: WP(2), 
+        fontSize: SIZE.h9,   
       },
       noTaskYetStyle: {
         color: COLORS.gray,
