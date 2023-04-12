@@ -10,7 +10,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 const HomeTopTab = () => {
   const [layout, setLayout] = useState<"MyTask" | "zstTaskItems" | "new List">(
-    "zstTaskItems"
+    "MyTask"
   );
   return (
     <>
