@@ -30,7 +30,16 @@ export const addTodo = createAsyncThunk(
 
   }
 );
+export const updateTodo = createAsyncThunk(
+  "tasks/updateTodo",
+  async ({ id, heading }: { id: string, heading: string })=> {
+    await firebase.firestore().collection("todos").doc(id).update({
+      heading,
+    });
 
+    return { id, heading };
+  }
+);
 export const deleteTodo = createAsyncThunk(
   "tasks/deleteTodo",
   async (id: string) => {
@@ -65,6 +74,12 @@ items: [] as {
           completed: undefined,
           createdAt: undefined
         });
+      })
+      .addCase(updateTodo.fulfilled, (state, action) => {
+        const index = state.items.findIndex((item) => item.id === action.payload.id);
+        if (index !== -1) {
+          state.items[index].heading = action.payload.heading;
+        }
       })
        .addCase(deleteTodo.fulfilled, (state, action) => {
         state.items = state.items.filter((item) => item.id !== action.payload);

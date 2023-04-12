@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import RootNavigator from "@app/navigation/root_navigator";
 import store from "@app/redux/store";
 import { NavigationContainer } from "@react-navigation/native";

@@ -31,6 +31,12 @@ const ZstTaskItemsScreen = () => {
                 color="black"
                 style={styles.icon}
               />
+              <AntDesign
+                name="star"
+                size={22}
+                color="black"
+                style={styles.icon}
+              />
               <Text>
                 {item.heading[0].toUpperCase() + item.heading.slice(1)}
               </Text>

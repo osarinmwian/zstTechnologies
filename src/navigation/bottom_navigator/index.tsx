@@ -16,6 +16,7 @@ import AddModal from "@app/screen/add_modal";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RouteParmaList } from "../parma_list";
+import ActionsModal from "@app/screen/bottom_sheet";
 
 const BottomNav = createBottomTabNavigator();
 
@@ -45,6 +46,7 @@ const CustomTabBarButton = ({ onPress }: Props) => (
 
 const BottomNavigation = () => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const [globalState, setGlobalState] = useState([]);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
     console.log("MODAL");
@@ -71,7 +73,7 @@ const BottomNavigation = () => {
             ),
           }}
         />
-        <BottomNav.Screen
+        {/* <BottomNav.Screen
           name="Settings"
           component={SettingScreen}
           options={{
@@ -80,6 +82,26 @@ const BottomNavigation = () => {
               <Feather name="more-horizontal" size={24} color="black" />
             ),
           }}
+        />
+      </BottomNav.Navigator> */}
+
+        <BottomNav.Screen
+          name="ActionsModal"
+          component={ActionsModal}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <Feather name="more-horizontal" size={24} color="black" />
+            ),
+          }}
+          listeners={() => ({
+            tabPress: (e) => {
+              e.preventDefault();
+              setGlobalState({
+                ...globalState,
+              });
+            },
+          })}
         />
       </BottomNav.Navigator>
       <AddModal

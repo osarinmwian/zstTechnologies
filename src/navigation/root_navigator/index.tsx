@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import BottomNavigation from "../bottom_navigator";
 import NewListScreen from "@app/screen/new_list";
 import ZstTaskItemsScreen from "@app/screen/zst_task_items";
+import ActionsModal from "@app/screen/bottom_sheet";
 
 const RootStack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const RootNavigator = () => {
         />
         <RootStack.Screen name="newListScreen" component={NewListScreen} />
         <RootStack.Screen name="zstTaskItems" component={ZstTaskItemsScreen} />
+        <RootStack.Screen name="zstTaskItems" component={ActionsModal} />
       </RootStack.Group>
     </RootStack.Navigator>
   );

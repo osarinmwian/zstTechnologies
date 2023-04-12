@@ -11,6 +11,7 @@ export type RouteParmaList = {
   WelcomeScreen: undefined;
   CircleButton: undefined;
   AddModal: undefined;
+  ActionsModal: undefined;
   NewListScreen:
     | {
         items?: string;
