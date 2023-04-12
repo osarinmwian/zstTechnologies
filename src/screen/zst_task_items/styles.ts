@@ -31,6 +31,12 @@ export const styles = StyleSheet.create({
   completeTodosText: {
     color: COLORS.white,
     alignSelf: "center",
-    marginTop: WP(10), 
+    marginTop: WP(10),
+    marginBottom: WP(2), 
+  },
+  niceWorkStyle: {
+    color: COLORS.gray,
+    alignSelf: "center",
+  
   }
 });

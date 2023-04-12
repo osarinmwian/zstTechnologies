@@ -81,7 +81,8 @@ const ZstTaskItemsScreen = () => {
       <View>
         <CardScreen icon="check" />
         <View style={styles.completeTodos}>
-          <Text style={styles.completeTodosText}>Task completed</Text>
+          <Text style={styles.completeTodosText}>All Task completed</Text>
+          <Text style={styles.niceWorkStyle}>Nice work</Text>
           <Pressable onPress={handleDeleteAll}>
             <Text style={styles.completeTodosText}>Undo</Text>
           </Pressable>

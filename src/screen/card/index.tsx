@@ -1,9 +1,9 @@
-import { COLORS, SIZE } from "@assets/themes";
+import { COLORS } from "@assets/themes";
 import React, { useState } from "react";
-import { Text, View, StyleSheet, PanResponder, Animated } from "react-native";
+import { View, PanResponder, Animated } from "react-native";
 import { widthPercentageToDP as WP } from "react-native-responsive-screen";
 import { styles } from "./styles";
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 type Props = {
   icon?: any;
@@ -104,7 +104,7 @@ const CardScreen = (props: Props) => {
           pan1.getLayout(),
         ]}
       >
-        <AntDesign name={props.icon} size={WP(27)} color={COLORS.red} />
+        <FontAwesome5 name={props.icon} size={WP(27)} color={COLORS.red} />
       </Animated.View>
       <Animated.View
         {...panResponder2.panHandlers}
@@ -122,7 +122,7 @@ const CardScreen = (props: Props) => {
           pan2.getLayout(),
         ]}
       >
-        <AntDesign name={props.icon} size={WP(27)} color={COLORS.primary} />
+        <FontAwesome5 name={props.icon} size={WP(27)} color={COLORS.primary} />
       </Animated.View>
       <Animated.View
         {...panResponder3.panHandlers}
@@ -139,7 +139,7 @@ const CardScreen = (props: Props) => {
           pan3.getLayout(),
         ]}
       >
-        <AntDesign name={props.icon} size={WP(27)} color={COLORS.white} />
+        <FontAwesome5 name={props.icon} size={WP(27)} color={COLORS.white} />
       </Animated.View>
       <Animated.View
         {...panResponder4.panHandlers}
@@ -156,7 +156,7 @@ const CardScreen = (props: Props) => {
           pan3.getLayout(),
         ]}
       >
-        <AntDesign name={props.icon} size={WP(27)} color={COLORS.yellow} />
+        <FontAwesome5 name={props.icon} size={WP(27)} color={COLORS.yellow} />
       </Animated.View>
       <Animated.View
         {...panResponder5.panHandlers}
@@ -173,7 +173,7 @@ const CardScreen = (props: Props) => {
           pan3.getLayout(),
         ]}
       >
-        <AntDesign name={props.icon} size={WP(27)} color={COLORS.green} />
+        <FontAwesome5 name={props.icon} size={WP(20)} color={COLORS.green} />
       </Animated.View>
     </View>
   );

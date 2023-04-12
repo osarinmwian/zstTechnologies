@@ -39,7 +39,11 @@ const MyTaskScreen = () => {
     return (
       <View>
         <CardScreen icon="check" />
-        <Text style={styles.completeTodosText}>No completed</Text>
+        <Text style={styles.completeTodosText}>No Task Yet</Text>
+        <Text style={styles.noTaskYetStyle}>
+          Add Your to-dos and keep track of them
+        </Text>
+        <Text style={styles.noTaskYetStyle}>across google workspace</Text>
       </View>
     );
   } else if (todos.length == 2) {
@@ -47,7 +51,7 @@ const MyTaskScreen = () => {
       <View>
         <CardScreen />
         <View style={styles.completeTodos}>
-          <Text style={styles.completeTodosText}>Task completed</Text>
+          <Text style={styles.completeTodosText}>No Task Yet</Text>
           <Pressable onPress={handleDeleteAll}>
             <Text style={styles.completeTodosText}>Undo</Text>
           </Pressable>
