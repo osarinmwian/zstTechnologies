@@ -6,7 +6,7 @@ import {
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
 import { useFocusEffect } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { COLORS } from "@assets/themes";
 import { styles } from "./styles";
 import { widthPercentageToDP as WP } from "react-native-responsive-screen";
@@ -18,11 +18,7 @@ const ActionsModal = () => {
   useFocusEffect(
     React.useCallback(() => {
       bottomSheetModalRef.current?.present();
-      //   if () {
-      //     bottomSheetModalRef.current?.present();
-      //   } else {
-      //     bottomSheetModalRef.current?.dismiss();
-      //   }
+
       return () => {};
     }, [])
   );
@@ -42,7 +38,7 @@ const ActionsModal = () => {
         <View style={styles.contentContainer}>
           <Pressable style={styles.pressable}>
             <Ionicons name="settings" size={WP(6)} style={styles.icon} />
-            <Text style={styles.textStyle}>Account Settings</Text>
+            <Text style={styles.textStyle}>Settings</Text>
           </Pressable>
           <View
             style={{
@@ -52,8 +48,14 @@ const ActionsModal = () => {
               marginLeft: WP(10),
             }}
           />
-          <Pressable>
-            <Text style={styles.textStyle}>Clean Requests</Text>
+          <Pressable style={styles.pressable}>
+            <Ionicons
+              name="calendar"
+              size={WP(5)}
+              style={styles.icon}
+              color={COLORS.black}
+            />
+            <Text style={styles.textStyle}>Calender</Text>
           </Pressable>
           <View
             style={{
@@ -63,8 +65,47 @@ const ActionsModal = () => {
               marginLeft: WP(10),
             }}
           />
-          <Pressable>
-            <Ionicons name="exit-outline" size={WP(6)} style={styles.icon} />
+          <Pressable style={styles.pressable}>
+            <MaterialIcons
+              name="dashboard"
+              size={WP(6)}
+              color={COLORS.black}
+              style={styles.icon}
+            />
+            <Text style={styles.textStyle}>Dashboard</Text>
+          </Pressable>
+          <View
+            style={{
+              borderColor: COLORS.lightGray,
+              borderBottomWidth: WP(0.15),
+              marginVertical: WP(2),
+              marginLeft: WP(10),
+            }}
+          />
+          <Pressable style={styles.pressable}>
+            <MaterialIcons
+              name="privacy-tip"
+              size={WP(6)}
+              color={COLORS.black}
+              style={styles.icon}
+            />
+            <Text style={styles.textStyle}>Privacy and Policy</Text>
+          </Pressable>
+          <View
+            style={{
+              borderColor: COLORS.lightGray,
+              borderBottomWidth: WP(0.15),
+              marginVertical: WP(2),
+              marginLeft: WP(10),
+            }}
+          />
+          <Pressable style={styles.pressable}>
+            <Ionicons
+              name="log-out"
+              size={WP(7)}
+              color={COLORS.black}
+              style={styles.icon}
+            />
             <Text style={styles.textStyle}>Logout</Text>
           </Pressable>
         </View>

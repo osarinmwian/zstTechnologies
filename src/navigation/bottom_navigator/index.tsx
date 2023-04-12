@@ -46,7 +46,7 @@ const CustomTabBarButton = ({ onPress }: Props) => (
 
 const BottomNavigation = () => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const [globalState, setGlobalState] = useState([]);
+  const [globalState, setGlobalState] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
     console.log("MODAL");
@@ -73,20 +73,8 @@ const BottomNavigation = () => {
             ),
           }}
         />
-        {/* <BottomNav.Screen
-          name="Settings"
-          component={SettingScreen}
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-              <Feather name="more-horizontal" size={24} color="black" />
-            ),
-          }}
-        />
-      </BottomNav.Navigator> */}
-
         <BottomNav.Screen
-          name="ActionsModal"
+          name="More"
           component={ActionsModal}
           options={{
             headerShown: false,
@@ -94,14 +82,12 @@ const BottomNavigation = () => {
               <Feather name="more-horizontal" size={24} color="black" />
             ),
           }}
-          listeners={() => ({
-            tabPress: (e) => {
-              e.preventDefault();
-              setGlobalState({
-                ...globalState,
-              });
-            },
-          })}
+          // listeners={() => ({
+          //   tabPress: (e) => {
+          //     e.preventDefault();
+          //     setGlobalState(!globalState);
+          //   },
+          // })}
         />
       </BottomNav.Navigator>
       <AddModal

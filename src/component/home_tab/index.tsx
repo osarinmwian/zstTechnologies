@@ -4,11 +4,13 @@ import { COLORS } from "@assets/themes";
 import MyTaskScreen from "@app/screen/my_task";
 import ZstTaskItems from "@app/screen/zst_task_items";
 import NewListScreen from "@app/screen/new_list";
+import ActionsModal from "@app/screen/bottom_sheet";
 
 const HomeTopTab = () => {
   const [layout, setLayout] = useState<"MyTask" | "zstTaskItems" | "new List">(
     "zstTaskItems"
   );
+  const [globalState, setGlobalState] = useState(false);
   return (
     <>
       <View style={styles.container}>
@@ -56,6 +58,8 @@ const HomeTopTab = () => {
           <NewListScreen />
         ) : null}
       </View>
+
+      {globalState ? <ActionsModal /> : null}
     </>
   );
 };

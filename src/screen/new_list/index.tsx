@@ -105,16 +105,18 @@ const NewListScreen = () => {
         renderItem={({ item }) => (
           <View style={styles.container}>
             <View style={styles.content}>
-              <AntDesign
-                name="staro"
-                size={22}
-                color="black"
-                style={styles.icon}
-              />
+              <View style={styles.contentView}>
+                <AntDesign
+                  name="staro"
+                  size={22}
+                  color="black"
+                  style={styles.icon}
+                />
 
-              <Text>
-                {item.heading[0].toUpperCase() + item.heading.slice(1)}
-              </Text>
+                <Text>
+                  {item.heading[0].toUpperCase() + item.heading.slice(1)}
+                </Text>
+              </View>
               <MaterialIcons
                 name="delete"
                 size={22}
@@ -147,10 +149,14 @@ const styles = StyleSheet.create({
   content: {
     flexDirection: "row",
     alignSelf: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
   },
   icon: {
     marginRight: WP(5),
     marginLeft: WP(2),
+  },
+  contentView: {
+    flexDirection: "row",
+    marginRight: WP(3),
   },
 });

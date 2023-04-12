@@ -17,7 +17,7 @@ const RootNavigator = () => {
         />
         <RootStack.Screen name="newListScreen" component={NewListScreen} />
         <RootStack.Screen name="zstTaskItems" component={ZstTaskItemsScreen} />
-        <RootStack.Screen name="zstTaskItems" component={ActionsModal} />
+        <RootStack.Screen name="actionsModals" component={ActionsModal} />
       </RootStack.Group>
     </RootStack.Navigator>
   );
