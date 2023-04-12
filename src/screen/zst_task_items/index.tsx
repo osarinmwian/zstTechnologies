@@ -21,7 +21,7 @@ const ZstTaskItemsScreen = () => {
     setIsLoading(true);
   }, []);
 
-  if (todos.length > 0 && todos.length < 2) {
+  if (todos.length > 0 && todos.length < 10) {
     return (
       <View style={{ marginVertical: "50%" }}>
         {isLoading && (
@@ -34,7 +34,7 @@ const ZstTaskItemsScreen = () => {
         )}
       </View>
     );
-  } else if (todos.length == 2) {
+  } else if (todos.length == 10) {
     return (
       <View>
         <CardScreen icon="check" size={WP(27)} />
