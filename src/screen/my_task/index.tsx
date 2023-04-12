@@ -1,32 +1,60 @@
-import { Pressable, Text, View } from "react-native";
-import React from "react";
+import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
 import { AppDispatch, RootState } from "@app/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { MaterialIcons } from "@expo/vector-icons";
 import { deleteTodo } from "@app/redux/store/taskSlice";
+import { COLORS } from "@assets/themes";
+import CardScreen from "../card";
+import { styles } from "./styles";
 
 const MyTaskScreen = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const todos = useSelector((state: RootState) => state.tasks.items);
+
   const handleDeleteAll = () => {
     todos.forEach((todo) => {
       dispatch(deleteTodo(todo.id));
     });
   };
-  return (
-    <View>
-      {todos && todos.length === 10 ? (
-        <View>
-          <Text>task completed </Text>
+  useEffect(() => {
+    setIsLoading(true);
+  }, []);
+
+  if (todos.length > 0 && todos.length < 2) {
+    return (
+      <View style={{ marginVertical: "50%" }}>
+        {isLoading && (
+          <View>
+            <ActivityIndicator color={"red"} style={{ marginBottom: 10 }} />
+            <Text style={{ color: "white", alignSelf: "center" }}>
+              Task in progress
+            </Text>
+          </View>
+        )}
+      </View>
+    );
+  } else if (todos.length === 0) {
+    return (
+      <View>
+        <CardScreen title="No task Yet" />
+      </View>
+    );
+  } else if (todos.length == 2) {
+    return (
+      <View>
+        <CardScreen icon="check" />
+        <View style={styles.completeTodos}>
+          <Text style={styles.completeTodosText}>Task completed</Text>
           <Pressable onPress={handleDeleteAll}>
-            <MaterialIcons name="delete" size={24} color="black" />
+            <Text style={styles.completeTodosText}>Undo</Text>
           </Pressable>
         </View>
-      ) : (
-        <Text>no task yet </Text>
-      )}
-    </View>
-  );
+      </View>
+    );
+  } else {
+    return null;
+  }
 };
-
 export default MyTaskScreen;

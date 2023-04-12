@@ -12,12 +12,10 @@ import AddModal from "@app/screen/add_modal";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import ZstTaskItemsScreen from "@app/screen/zst_task_items";
 import MoreModal from "@app/screen/more_modal";
+import { Props } from "@app/interface";
 
 const BottomNav = createBottomTabNavigator();
 
-interface Props {
-  onPress: () => void;
-}
 const CustomTabBarButton = ({ onPress }: Props) => (
   <TouchableOpacity onPress={onPress}>
     <View
@@ -35,6 +33,11 @@ const CustomTabBarButton = ({ onPress }: Props) => (
     >
       <Feather name="plus" size={24} color={COLORS.yellow} />
     </View>
+  </TouchableOpacity>
+);
+const CustomTabIconButton = ({ onPress }: Props) => (
+  <TouchableOpacity onPress={onPress}>
+    <Feather name="more-horizontal" size={24} color={COLORS.gray} />
   </TouchableOpacity>
 );
 
@@ -80,12 +83,7 @@ const BottomNavigation = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
-              <Feather
-                name="more-horizontal"
-                size={24}
-                color={COLORS.gray}
-                onPress={toggleVisible}
-              />
+              <CustomTabIconButton onPress={toggleVisible} />
             ),
           }}
         />
@@ -94,67 +92,9 @@ const BottomNavigation = () => {
         isVisible={isModalVisible}
         closeModal={() => setModalVisible(!isModalVisible)}
       />
-      <MoreModal
-        isVisible={visible}
-        closeModal={() => setVisible(!isModalVisible)}
-      />
+      <MoreModal isVisible={visible} closeModal={() => setVisible(!visible)} />
     </>
   );
 };
 
 export default BottomNavigation;
-
-// const Tab = createMaterialBottomTabNavigator();
-
-// const BottomNavigation = () => {
-//   const [isModalVisible, setModalVisible] = useState(false);
-//   const toggleModal = () => {
-//     setModalVisible(!isModalVisible);
-//   };
-//   return (
-//     <>
-//       <Tab.Navigator
-//         initialRouteName="Feed"
-//         activeColor="#e91e63"
-//         barStyle={{ backgroundColor: COLORS.lightBlack }}
-//       >
-//         <Tab.Screen
-//           name="Menu"
-//           component={HomeScreen}
-//           options={{
-//             tabBarLabel: "Home",
-//             tabBarIcon: ({ color }) => (
-//               <Feather name="menu" size={24} color="black" />
-//             ),
-//           }}
-//         />
-//         <Tab.Screen
-//           name="Notifications"
-//           component={CircleButton}
-//           options={{
-//             tabBarLabel: "",
-//             tabBarIcon: ({ color }) => (
-//               <CustomTabBarButton onPress={toggleModal} />
-//             ),
-//           }}
-//         />
-//         <Tab.Screen
-//           name="ActionsModal"
-//           component={ActionsModal}
-//           options={{
-//             tabBarLabel: "More",
-//             tabBarIcon: ({ color }) => (
-//               <Feather name="more-horizontal" size={24} color="black" />
-//             ),
-//           }}
-//         />
-//       </Tab.Navigator>
-//       <AddModal
-//         isVisible={isModalVisible}
-//         closeModal={() => setModalVisible(!isModalVisible)}
-//       />
-//     </>
-//   );
-// };
-
-// export default BottomNavigation;

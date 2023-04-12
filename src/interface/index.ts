@@ -1,12 +1,12 @@
 export interface State {
     data: {
-      list: Task[]; // replace string with the type of your task object
+      list: Task[]; 
       total: number;
     };
     loading: "loading" | "pending" | "succeeded" | "failed";
   }
   export interface Task {
-    // Define the shape of your task object
+   list: undefined;
   }
   
  export  interface AddTaskAction {
@@ -18,3 +18,7 @@ export interface State {
     id: string;
     heading: string;
   };
+ export  interface Props {
+    onPress: () => void;
+  }
+  

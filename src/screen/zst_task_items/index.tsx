@@ -1,16 +1,7 @@
-import { Todo } from "@app/interface";
-import { AppDispatch, RootState } from "@app/redux/store";
-import { deleteTodo } from "@app/redux/store/taskSlice";
-import { MaterialIcons, AntDesign, Entypo } from "@expo/vector-icons";
-import {
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@app/redux/store";
+import { AntDesign, Entypo } from "@expo/vector-icons";
+import { FlatList, SafeAreaView, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 import { widthPercentageToDP as WP } from "react-native-responsive-screen";
 import { styles } from "./styles";
 import { COLORS } from "@assets/themes";
