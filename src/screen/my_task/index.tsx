@@ -13,7 +13,7 @@ const MyTaskScreen = () => {
     setIsLoading(true);
   }, []);
 
-  if (todos.length > 0 && todos.length < 2) {
+  if (todos.length > 0 && todos.length < 10) {
     return (
       <View style={{ marginVertical: "50%" }}>
         {isLoading && (
