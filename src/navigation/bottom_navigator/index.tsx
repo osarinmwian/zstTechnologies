@@ -9,8 +9,9 @@ import { View } from "react-native";
 import { COLORS } from "@assets/themes";
 import CircleButton from "@app/screen/circle_buttton";
 import AddModal from "@app/screen/add_modal";
-import ActionsModal from "@app/screen/bottom_sheet";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import ZstTaskItemsScreen from "@app/screen/zst_task_items";
+import MoreModal from "@app/screen/more_modal";
 
 const BottomNav = createBottomTabNavigator();
 
@@ -32,21 +33,25 @@ const CustomTabBarButton = ({ onPress }: Props) => (
         top: WP(-8.1),
       }}
     >
-      <Feather name="plus" size={24} color={COLORS.gray} />
+      <Feather name="plus" size={24} color={COLORS.yellow} />
     </View>
   </TouchableOpacity>
 );
 
 const BottomNavigation = () => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
+  };
+  const toggleVisible = () => {
+    setVisible(!visible);
   };
   return (
     <>
       <BottomNav.Navigator
         screenOptions={{
-          tabBarStyle: { position: "absolute", backgroundColor: "red" },
+          tabBarStyle: { position: "absolute", backgroundColor: "#292323" },
           tabBarShowLabel: false,
         }}
       >
@@ -71,11 +76,16 @@ const BottomNavigation = () => {
         />
         <BottomNav.Screen
           name="More"
-          component={ActionsModal}
+          component={ZstTaskItemsScreen}
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
-              <Feather name="more-horizontal" size={24} color={COLORS.gray} />
+              <Feather
+                name="more-horizontal"
+                size={24}
+                color={COLORS.gray}
+                onPress={toggleVisible}
+              />
             ),
           }}
         />
@@ -83,6 +93,10 @@ const BottomNavigation = () => {
       <AddModal
         isVisible={isModalVisible}
         closeModal={() => setModalVisible(!isModalVisible)}
+      />
+      <MoreModal
+        isVisible={visible}
+        closeModal={() => setVisible(!isModalVisible)}
       />
     </>
   );

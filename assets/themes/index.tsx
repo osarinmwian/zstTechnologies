@@ -8,6 +8,7 @@ export const COLORS = {
   lightGray: "#ded8d7",
   gray: "gray",
   purple: "#800080",
+  yellow: "#f5e38c",
 };
 
 export const SIZE = {

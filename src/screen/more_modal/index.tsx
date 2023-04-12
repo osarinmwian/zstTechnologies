@@ -1,40 +1,47 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useMemo, useRef } from "react";
-import { View, Text, Pressable, Image } from "react-native";
+import CustomModal from "@app/component/modal";
+import Input from "@app/component/text_input";
+import { AppDispatch, RootState } from "@app/redux/store";
+import { addTodo } from "@app/redux/store/taskSlice";
+import { COLORS, SIZE } from "@assets/themes";
+import React, { useState } from "react";
 import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
-import { useFocusEffect } from "@react-navigation/native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { COLORS } from "@assets/themes";
-import { styles } from "./styles";
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Keyboard,
+  Alert,
+  Pressable,
+} from "react-native";
 import { widthPercentageToDP as WP } from "react-native-responsive-screen";
-import CustomBackdrop from "./back_drop";
+import { useDispatch, useSelector } from "react-redux";
+import { styles } from "./styles";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
-const ActionsModal = () => {
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+type Props = {
+  isVisible: boolean;
+  closeModal?: () => void;
+};
 
-  useFocusEffect(
-    React.useCallback(() => {
-      bottomSheetModalRef.current?.present();
+const MoreModal = (props: Props) => {
+  const [addData, setAddData] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
+  const todos = useSelector((state: RootState) => state.tasks.items);
+  const handleAdd = () => {
+    if (todos && todos.length >= 10) {
+      Alert.alert("Limit reached", "You cannot add more than 10 todos");
+      return;
+    }
 
-      return () => {};
-    }, [])
-  );
-
-  const snapPoints = useMemo(() => ["20%", "45%"], []);
+    if (addData && addData.length > 0) {
+      dispatch(addTodo(addData));
+      setAddData("");
+      Keyboard.dismiss();
+    }
+  };
   return (
-    <BottomSheetModalProvider>
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        index={1}
-        enableDismissOnClose={true}
-        containerStyle={styles.container}
-        snapPoints={snapPoints}
-        enablePanDownToClose={true}
-        backdropComponent={CustomBackdrop}
-      >
+    <CustomModal isVisible={props.isVisible} onBackdropPress={props.closeModal}>
+      <View style={styles.modal}>
         <View style={styles.contentContainer}>
           <Pressable style={styles.pressable}>
             <Ionicons name="settings" size={WP(6)} style={styles.icon} />
@@ -93,9 +100,9 @@ const ActionsModal = () => {
             <Text style={styles.textStyle}>Logout</Text>
           </Pressable>
         </View>
-      </BottomSheetModal>
-    </BottomSheetModalProvider>
+      </View>
+    </CustomModal>
   );
 };
 
-export default ActionsModal;
+export default MoreModal;
