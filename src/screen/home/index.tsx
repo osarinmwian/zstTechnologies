@@ -3,28 +3,35 @@ import React from "react";
 import HomeTopTab from "@app/component/home_tab";
 import { useSelector } from "react-redux";
 import { RootState } from "@app/redux/store";
+import { COLORS } from "@assets/themes";
+import { widthPercentageToDP as WP } from "react-native-responsive-screen";
+import { styles } from "./styles";
+import StatusBarConntent from "@app/component/status_bar";
 
 const HomeScreen = () => {
   const todos = useSelector((state: RootState) => state.tasks.items);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <StatusBarConntent
+        barStyle="dark-content"
+        backgroundColor={COLORS.black}
+      />
       <View>
-        <View
-          style={{
-            alignSelf: "center",
-            marginHorizontal: 10,
-          }}
-        >
-          <Text> Task</Text>
+        <View style={styles.taskView}>
+          <Text style={styles.text}> Tasks</Text>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            marginHorizontal: 10,
-          }}
-        >
-          <Text>{todos.length}</Text>
+        <View style={styles.countView}>
+          <View
+            style={{
+              borderRadius: WP(20),
+              backgroundColor: COLORS.purple,
+              width: WP(10),
+              height: WP(10),
+              marginLeft: WP(10),
+            }}
+          >
+            <Text style={styles.count}>{todos.length}</Text>
+          </View>
         </View>
         <HomeTopTab />
       </View>

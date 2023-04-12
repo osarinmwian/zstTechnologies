@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import {
-  BottomTabBar,
-  createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "@app/screen/home";
-import SettingScreen from "@app/screen/settings";
 import { widthPercentageToDP as WP } from "react-native-responsive-screen";
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
@@ -13,10 +9,8 @@ import { View } from "react-native";
 import { COLORS } from "@assets/themes";
 import CircleButton from "@app/screen/circle_buttton";
 import AddModal from "@app/screen/add_modal";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RouteParmaList } from "../parma_list";
 import ActionsModal from "@app/screen/bottom_sheet";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 const BottomNav = createBottomTabNavigator();
 
@@ -32,35 +26,37 @@ const CustomTabBarButton = ({ onPress }: Props) => (
         width: WP(16.2),
         height: WP(16.2),
         borderRadius: WP(8.1),
-        backgroundColor: COLORS.red,
+        backgroundColor: COLORS.lightBlack,
         marginBottom: WP(-1.875),
         elevation: WP(1.875),
-
         top: WP(-8.1),
       }}
     >
-      <Feather name="plus" size={24} color={COLORS.white} />
+      <Feather name="plus" size={24} color={COLORS.gray} />
     </View>
   </TouchableOpacity>
 );
 
 const BottomNavigation = () => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const [globalState, setGlobalState] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
-    console.log("MODAL");
   };
   return (
     <>
-      <BottomNav.Navigator>
+      <BottomNav.Navigator
+        screenOptions={{
+          tabBarStyle: { position: "absolute", backgroundColor: "red" },
+          tabBarShowLabel: false,
+        }}
+      >
         <BottomNav.Screen
           name="Home"
           component={HomeScreen}
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
-              <Feather name="menu" size={24} color="black" />
+              <Feather name="menu" size={24} color={COLORS.gray} />
             ),
           }}
         />
@@ -79,15 +75,9 @@ const BottomNavigation = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ focused }) => (
-              <Feather name="more-horizontal" size={24} color="black" />
+              <Feather name="more-horizontal" size={24} color={COLORS.gray} />
             ),
           }}
-          // listeners={() => ({
-          //   tabPress: (e) => {
-          //     e.preventDefault();
-          //     setGlobalState(!globalState);
-          //   },
-          // })}
         />
       </BottomNav.Navigator>
       <AddModal
@@ -99,3 +89,58 @@ const BottomNavigation = () => {
 };
 
 export default BottomNavigation;
+
+// const Tab = createMaterialBottomTabNavigator();
+
+// const BottomNavigation = () => {
+//   const [isModalVisible, setModalVisible] = useState(false);
+//   const toggleModal = () => {
+//     setModalVisible(!isModalVisible);
+//   };
+//   return (
+//     <>
+//       <Tab.Navigator
+//         initialRouteName="Feed"
+//         activeColor="#e91e63"
+//         barStyle={{ backgroundColor: COLORS.lightBlack }}
+//       >
+//         <Tab.Screen
+//           name="Menu"
+//           component={HomeScreen}
+//           options={{
+//             tabBarLabel: "Home",
+//             tabBarIcon: ({ color }) => (
+//               <Feather name="menu" size={24} color="black" />
+//             ),
+//           }}
+//         />
+//         <Tab.Screen
+//           name="Notifications"
+//           component={CircleButton}
+//           options={{
+//             tabBarLabel: "",
+//             tabBarIcon: ({ color }) => (
+//               <CustomTabBarButton onPress={toggleModal} />
+//             ),
+//           }}
+//         />
+//         <Tab.Screen
+//           name="ActionsModal"
+//           component={ActionsModal}
+//           options={{
+//             tabBarLabel: "More",
+//             tabBarIcon: ({ color }) => (
+//               <Feather name="more-horizontal" size={24} color="black" />
+//             ),
+//           }}
+//         />
+//       </Tab.Navigator>
+//       <AddModal
+//         isVisible={isModalVisible}
+//         closeModal={() => setModalVisible(!isModalVisible)}
+//       />
+//     </>
+//   );
+// };
+
+// export default BottomNavigation;

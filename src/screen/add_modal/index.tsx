@@ -40,7 +40,6 @@ const AddModal = (props: Props) => {
     <CustomModal isVisible={props.isVisible} onBackdropPress={props.closeModal}>
       <View style={styles.modal}>
         <View style={styles.textIputView}>
-          <Text style={styles.addTask}>Add A Task</Text>
           <Input
             placeholder="Add New Todos"
             onChangeText={(heading) => setAddData(heading)}
@@ -63,17 +62,17 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: WP(6),
     borderTopRightRadius: WP(6),
     height: WP(100),
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.lightBlack,
     padding: WP(2.7),
     alignSelf: "center",
     marginTop: WP(10),
   },
   textIputView: {
-    marginTop: WP(10),
+    marginTop: WP(20),
   },
   touchable: {
     marginVertical: WP(2),
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.purple,
     width: WP(20),
     borderRadius: WP(2),
     padding: WP(2.5),
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
   addTask: {
     marginVertical: WP(4),
     alignSelf: "center",
-    color: COLORS.primary,
+    color: COLORS.purple,
     fontSize: SIZE.h8,
     fontWeight: "bold",
   },

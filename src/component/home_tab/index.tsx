@@ -5,15 +5,23 @@ import MyTaskScreen from "@app/screen/my_task";
 import ZstTaskItems from "@app/screen/zst_task_items";
 import NewListScreen from "@app/screen/new_list";
 import ActionsModal from "@app/screen/bottom_sheet";
+import { styles } from "./styles";
+import { widthPercentageToDP as WP } from "react-native-responsive-screen";
+import { AntDesign } from "@expo/vector-icons";
 
 const HomeTopTab = () => {
   const [layout, setLayout] = useState<"MyTask" | "zstTaskItems" | "new List">(
     "zstTaskItems"
   );
-  const [globalState, setGlobalState] = useState(false);
   return (
     <>
       <View style={styles.container}>
+        <AntDesign
+          name="staro"
+          size={WP(4)}
+          color={COLORS.gray}
+          style={styles.icon}
+        />
         <TouchableOpacity>
           {layout === "MyTask" ? (
             <Text allowFontScaling={false} style={styles.active}>
@@ -38,7 +46,13 @@ const HomeTopTab = () => {
             ZstTaskItems
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.touchable}>
+          <AntDesign
+            name="plus"
+            size={WP(3)}
+            color={COLORS.gray}
+            style={styles.icon}
+          />
           <Text
             allowFontScaling={false}
             style={layout === "new List" ? styles.active : styles.text}
@@ -58,34 +72,8 @@ const HomeTopTab = () => {
           <NewListScreen />
         ) : null}
       </View>
-
-      {globalState ? <ActionsModal /> : null}
     </>
   );
 };
 
 export default HomeTopTab;
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
-    width: "90%",
-    alignItems: "center",
-    alignSelf: "center",
-    height: 40, // Set the height of the container view
-  },
-  text: {
-    fontSize: 14,
-    color: COLORS.black,
-  },
-  active: {
-    fontSize: 16,
-    color: COLORS.primary,
-    borderBottomWidth: 2,
-    borderColor: COLORS.red,
-    paddingBottom: 10,
-    borderStyle: "solid",
-  },
-});

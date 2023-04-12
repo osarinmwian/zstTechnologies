@@ -23,7 +23,7 @@ const ActionsModal = () => {
     }, [])
   );
 
-  const snapPoints = useMemo(() => ["20%", "47%"], []);
+  const snapPoints = useMemo(() => ["20%", "45%"], []);
   return (
     <BottomSheetModalProvider>
       <BottomSheetModal
@@ -49,12 +49,7 @@ const ActionsModal = () => {
             }}
           />
           <Pressable style={styles.pressable}>
-            <Ionicons
-              name="calendar"
-              size={WP(5)}
-              style={styles.icon}
-              color={COLORS.black}
-            />
+            <Ionicons name="calendar" size={WP(5)} style={styles.icon} />
             <Text style={styles.textStyle}>Calender</Text>
           </Pressable>
           <View
@@ -66,12 +61,7 @@ const ActionsModal = () => {
             }}
           />
           <Pressable style={styles.pressable}>
-            <MaterialIcons
-              name="dashboard"
-              size={WP(6)}
-              color={COLORS.black}
-              style={styles.icon}
-            />
+            <MaterialIcons name="dashboard" size={WP(6)} style={styles.icon} />
             <Text style={styles.textStyle}>Dashboard</Text>
           </Pressable>
           <View
@@ -86,7 +76,6 @@ const ActionsModal = () => {
             <MaterialIcons
               name="privacy-tip"
               size={WP(6)}
-              color={COLORS.black}
               style={styles.icon}
             />
             <Text style={styles.textStyle}>Privacy and Policy</Text>
@@ -100,12 +89,7 @@ const ActionsModal = () => {
             }}
           />
           <Pressable style={styles.pressable}>
-            <Ionicons
-              name="log-out"
-              size={WP(7)}
-              color={COLORS.black}
-              style={styles.icon}
-            />
+            <Ionicons name="log-out" size={WP(7)} style={styles.icon} />
             <Text style={styles.textStyle}>Logout</Text>
           </Pressable>
         </View>

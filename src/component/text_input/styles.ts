@@ -18,7 +18,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: WP(4),
     borderRadius: WP(2),
     borderColor: COLORS.gray,
-    borderWidth: WP(0.15)
+    borderWidth: WP(0.15),
+    color: COLORS.white,
   },
   inputStyle: {
     height: WP(60),

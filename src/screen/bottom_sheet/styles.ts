@@ -5,12 +5,12 @@ import { widthPercentageToDP as WP } from 'react-native-responsive-screen';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.gray,
+    backgroundColor: COLORS.black,
   },
   contentContainer: {
     flex: 1,
     borderTopRightRadius: WP(6),
-    paddingHorizontal: WP(2),
+    paddingHorizontal: WP(2),  
   },
   pressable: {
     flexDirection: 'row',
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     marginTop: WP(1.5),
   },
   icon: {
-    color: COLORS.black,
+    color: COLORS.gray,
     marginTop: WP(1.5),
   },
   activityTextStyle: {
