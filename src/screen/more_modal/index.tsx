@@ -45,7 +45,7 @@ const MoreModal = (props: Props) => {
           />
           <Pressable style={styles.pressable}>
             <MaterialIcons name="dashboard" size={WP(6)} style={styles.icon} />
-            <Text style={styles.textStyle}>Dashboard</Text>
+            <Text style={styles.textStyle}>Categorize Task</Text>
           </Pressable>
           <View
             style={{
@@ -61,7 +61,7 @@ const MoreModal = (props: Props) => {
               size={WP(6)}
               style={styles.icon}
             />
-            <Text style={styles.textStyle}>Privacy and Policy</Text>
+            <Text style={styles.textStyle}>Share Tasksks </Text>
           </Pressable>
           <View
             style={{
