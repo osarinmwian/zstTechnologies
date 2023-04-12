@@ -1,25 +1,182 @@
-import React from "react";
-import { Card, Title, Paragraph } from "react-native-paper";
-import { styles } from "./styles";
-import { Entypo } from "@expo/vector-icons";
+import { COLORS, SIZE } from "@assets/themes";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, PanResponder, Animated } from "react-native";
 import { widthPercentageToDP as WP } from "react-native-responsive-screen";
+import { styles } from "./styles";
+import { AntDesign, Feather } from "@expo/vector-icons";
 
 type Props = {
-  title?: string;
-  text?: string;
   icon?: any;
 };
-const CreateCard = (props: Props) => {
+const CardScreen = (props: Props) => {
+  const [pan1, setPan1] = useState(new Animated.ValueXY());
+  const [panResponder1, setPanResponder1] = useState(
+    PanResponder.create({
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderMove: Animated.event([null, { dx: pan1.x, dy: pan1.y }], {
+        useNativeDriver: false,
+      }),
+      onPanResponderRelease: () => {
+        Animated.spring(pan1, {
+          toValue: { x: 0, y: 0 },
+          useNativeDriver: false,
+        }).start();
+      },
+    })
+  );
+
+  const [pan2, setPan2] = useState(new Animated.ValueXY());
+  const [panResponder2, setPanResponder2] = useState(
+    PanResponder.create({
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderMove: Animated.event([null, { dx: pan2.x, dy: pan2.y }], {
+        useNativeDriver: false,
+      }),
+      onPanResponderRelease: () => {
+        Animated.spring(pan2, {
+          toValue: { x: 0, y: 0 },
+          useNativeDriver: false,
+        }).start();
+      },
+    })
+  );
+
+  const [pan3, setPan3] = useState(new Animated.ValueXY());
+  const [panResponder3, setPanResponder3] = useState(
+    PanResponder.create({
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderMove: Animated.event([null, { dx: pan3.x, dy: pan3.y }], {
+        useNativeDriver: false,
+      }),
+      onPanResponderRelease: () => {
+        Animated.spring(pan3, {
+          toValue: { x: 0, y: 0 },
+          useNativeDriver: false,
+        }).start();
+      },
+    })
+  );
+
+  const [pan4, setPan4] = useState(new Animated.ValueXY());
+  const [panResponder4, setPanResponder4] = useState(
+    PanResponder.create({
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderMove: Animated.event([null, { dx: pan4.x, dy: pan4.y }], {
+        useNativeDriver: false,
+      }),
+      onPanResponderRelease: () => {
+        Animated.spring(pan4, {
+          toValue: { x: 0, y: 0 },
+          useNativeDriver: false,
+        }).start();
+      },
+    })
+  );
+  const [pan5, setPan5] = useState(new Animated.ValueXY());
+  const [panResponder5, setPanResponder5] = useState(
+    PanResponder.create({
+      onMoveShouldSetPanResponderCapture: () => true,
+      onPanResponderMove: Animated.event([null, { dx: pan5.x, dy: pan5.y }], {
+        useNativeDriver: false,
+      }),
+      onPanResponderRelease: () => {
+        Animated.spring(pan5, {
+          toValue: { x: 0, y: 0 },
+          useNativeDriver: false,
+        }).start();
+      },
+    })
+  );
   return (
-    <Card style={styles.container}>
-      <Card.Content>
-        <Title style={styles.title}>{props.title}</Title>
-        <Entypo name={props.icon} size={WP(11.5)} style={styles.icon} />
-      </Card.Content>
-      <Card.Content>
-        <Paragraph>{props.text}</Paragraph>
-      </Card.Content>
-    </Card>
+    <View style={styles.cardContainer}>
+      <Animated.View
+        {...panResponder1.panHandlers}
+        style={[
+          styles.card,
+          {
+            elevation: WP(4),
+            top: WP(6),
+            backgroundColor: COLORS.white,
+            zIndex: pan1.y,
+            width: WP(53),
+            height: WP(50),
+          },
+          pan1.getLayout(),
+        ]}
+      >
+        <AntDesign name={props.icon} size={WP(27)} color={COLORS.red} />
+      </Animated.View>
+      <Animated.View
+        {...panResponder2.panHandlers}
+        style={[
+          styles.card,
+          {
+            elevation: WP(4),
+            top: WP(27),
+            backgroundColor: COLORS.red,
+            zIndex: pan2.y,
+            marginTop: WP(-50),
+            width: WP(52.6),
+            height: WP(50),
+          },
+          pan2.getLayout(),
+        ]}
+      >
+        <AntDesign name={props.icon} size={WP(27)} color={COLORS.primary} />
+      </Animated.View>
+      <Animated.View
+        {...panResponder3.panHandlers}
+        style={[
+          styles.card,
+          {
+            elevation: WP(3),
+            backgroundColor: COLORS.primary,
+            zIndex: pan3.y,
+            marginTop: WP(-50),
+            width: WP(52.4),
+            height: WP(50),
+          },
+          pan3.getLayout(),
+        ]}
+      >
+        <AntDesign name={props.icon} size={WP(27)} color={COLORS.white} />
+      </Animated.View>
+      <Animated.View
+        {...panResponder4.panHandlers}
+        style={[
+          styles.card,
+          {
+            elevation: WP(1),
+            backgroundColor: COLORS.green,
+            zIndex: pan4.y,
+            marginTop: WP(-49),
+            width: WP(52.2),
+            height: WP(50),
+          },
+          pan3.getLayout(),
+        ]}
+      >
+        <AntDesign name={props.icon} size={WP(27)} color={COLORS.yellow} />
+      </Animated.View>
+      <Animated.View
+        {...panResponder5.panHandlers}
+        style={[
+          styles.card,
+          {
+            elevation: WP(0.5),
+            backgroundColor: COLORS.yellow,
+            zIndex: pan5.y,
+            marginTop: WP(-49),
+            width: WP(52.1),
+            height: WP(50),
+          },
+          pan3.getLayout(),
+        ]}
+      >
+        <AntDesign name={props.icon} size={WP(27)} color={COLORS.green} />
+      </Animated.View>
+    </View>
   );
 };
-export default CreateCard;
+
+export default CardScreen;

@@ -26,10 +26,11 @@ export const styles = StyleSheet.create({
         borderRadius: WP(2),
         paddingHorizontal: WP(3),
         paddingVertical: WP(3),
+        
       },
       completeTodosText: {
         color: COLORS.white,
-       
-      
+        alignSelf: "center",
+        marginTop: WP(10),    
       }
 });

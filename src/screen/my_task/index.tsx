@@ -38,13 +38,14 @@ const MyTaskScreen = () => {
   } else if (todos.length === 0) {
     return (
       <View>
-        <CardScreen title="No task Yet" />
+        <CardScreen icon="check" />
+        <Text style={styles.completeTodosText}>No completed</Text>
       </View>
     );
   } else if (todos.length == 2) {
     return (
       <View>
-        <CardScreen icon="check" />
+        <CardScreen />
         <View style={styles.completeTodos}>
           <Text style={styles.completeTodosText}>Task completed</Text>
           <Pressable onPress={handleDeleteAll}>

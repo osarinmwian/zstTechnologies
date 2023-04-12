@@ -4,21 +4,26 @@ import { widthPercentageToDP as WP } from 'react-native-responsive-screen';
 
 
 export const styles = StyleSheet.create({
-    container: {
-     backgroundColor: "white",
-    alignContent: "center",
-    margin: WP(27),
-     height: WP(50),
-     width: WP(50)
-      
+    cardContainer: {
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: "40%",
     },
-    title: {
-        alignSelf: "center",
-        marginTop: WP(10),
-        color: COLORS.gray
+    card: {
+      width: WP(57),
+      height: WP(39),
+  
+      marginBottom: WP(2),
+      alignItems: "center",
+      justifyContent: "center",
+      position: "relative",
     },
-    icon: {
-        color: COLORS.green,
-        marginHorizontal: WP(15)  
-    }
+    paragraph: {
+      fontSize: SIZE.h6,
+      fontWeight: "bold",
+      textAlign: "center",
+      justifyContent: "center",
+      padding: WP(5.4),
+      marginBottom: WP(2.7),
+    },
   });
